@@ -1,9 +1,17 @@
 # SimpleMQTTClient  
 
-Simple MQTT Client in Swift
+A simple MQTT Client in Swift
 
-## Download and install
+## Build and install
 
-In order to download and install the framework into your code you need to download the framework and build it.
+Three simple steps: 
 
-1. Run 
+1. Checkout the project
+2. Build the project  
+	![][image-1]  
+
+3. Drag and drop into embedded binaries: 
+	![][image-2]
+
+[image-1]:	run.png
+[image-2]:	eb.png

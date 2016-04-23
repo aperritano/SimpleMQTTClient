@@ -299,14 +299,12 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
         }
     }
     
-    /**
-        Timer callback 1.0 seconds after the disconnection
-    */
+    // Timer callback 1.0 seconds after the disconnection
     public func reconnect(timer: NSTimer) {
         self.reconnect()
     }
     
-// MARK:  MQTTSessionDelegate protocol
+    // MARK:  MQTTSessionDelegate protocol
     
     public func newMessage(session: MQTTSession!, data: NSData!, onTopic topic: String!, qos: MQTTQosLevel, retained: Bool, mid: UInt32) {
         print("New message received \(NSString(data: data, encoding: NSUTF8StringEncoding))")
