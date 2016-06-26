@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		7033829A1D1A50A800A445CC /* SimpleMQTTClientBuilder */ = {
+		70617B851D1B740300D74A01 /* SimpleMQTTClientBuilder */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 7033829B1D1A50A800A445CC /* Build configuration list for PBXAggregateTarget "SimpleMQTTClientBuilder" */;
+			buildConfigurationList = 70617B861D1B740300D74A01 /* Build configuration list for PBXAggregateTarget "SimpleMQTTClientBuilder" */;
 			buildPhases = (
-				7033829E1D1A50E700A445CC /* ShellScript */,
+				70617B891D1B741200D74A01 /* ShellScript */,
 			);
 			dependencies = (
 			);
@@ -39,7 +39,6 @@
 		700609881CC9A6C0001F60C2 /* SimpleMQTTClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700609701CC9A6C0001F60C2 /* SimpleMQTTClientDelegate.swift */; };
 		7006098A1CC9A6C0001F60C2 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700609711CC9A6C0001F60C2 /* String.swift */; };
 		7006098C1CC9A809001F60C2 /* SimpleMQTTClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 991DBE1A1A6353D300C084C5 /* SimpleMQTTClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7011CBE21D1A4EAA00BD11A4 /* SimpleMQTTClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 991DBE151A6353D300C084C5 /* SimpleMQTTClient.framework */; };
 		7016967B1CC9C89500BBA766 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7016967A1CC9C89500BBA766 /* AppDelegate.swift */; };
 		7016967D1CC9C89500BBA766 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7016967C1CC9C89500BBA766 /* ViewController.swift */; };
 		701696801CC9C89500BBA766 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7016967E1CC9C89500BBA766 /* Main.storyboard */; };
@@ -99,7 +98,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7011CBE21D1A4EAA00BD11A4 /* SimpleMQTTClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,15 +263,18 @@
 		991DBE0C1A6353D300C084C5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
+				LastSwiftMigration = 0730;
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Gianluca Venturini";
 				TargetAttributes = {
 					701696771CC9C89500BBA766 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = CN8G286W67;
 					};
-					7033829A1D1A50A800A445CC = {
+					70617B851D1B740300D74A01 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
 					991DBE141A6353D300C084C5 = {
@@ -297,7 +298,7 @@
 			targets = (
 				991DBE141A6353D300C084C5 /* SimpleMQTTClient */,
 				701696771CC9C89500BBA766 /* TestClient */,
-				7033829A1D1A50A800A445CC /* SimpleMQTTClientBuilder */,
+				70617B851D1B740300D74A01 /* SimpleMQTTClientBuilder */,
 			);
 		};
 /* End PBXProject section */
@@ -323,7 +324,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7033829E1D1A50E700A445CC /* ShellScript */ = {
+		70617B891D1B741200D74A01 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -399,8 +400,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = TestClient/Info.plist;
@@ -408,7 +407,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ltg.evl.uic.edu.TestClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -417,8 +415,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -427,18 +423,17 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ltg.evl.uic.edu.TestClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
-		7033829C1D1A50A800A445CC /* Debug */ = {
+		70617B871D1B740300D74A01 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		7033829D1D1A50A800A445CC /* Release */ = {
+		70617B881D1B740300D74A01 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -547,7 +542,6 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = evl.ltg.uic.edu.SimpleMQTTClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -569,7 +563,6 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = evl.ltg.uic.edu.SimpleMQTTClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -589,11 +582,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7033829B1D1A50A800A445CC /* Build configuration list for PBXAggregateTarget "SimpleMQTTClientBuilder" */ = {
+		70617B861D1B740300D74A01 /* Build configuration list for PBXAggregateTarget "SimpleMQTTClientBuilder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7033829C1D1A50A800A445CC /* Debug */,
-				7033829D1D1A50A800A445CC /* Release */,
+				70617B871D1B740300D74A01 /* Debug */,
+				70617B881D1B740300D74A01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

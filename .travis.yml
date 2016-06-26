@@ -3,4 +3,24 @@ osx_image: xcode7.3
 xcode_sdk: iphonesimulator9.3
 notifications:
   slack: nutella-dev:7o4cfjd4K0Y2ulxGpHdE1jG5
-script: xcodebuild -workspace SimpleMQTTClient.xcworkspace -scheme SimpleMQTTClient -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+script: xcodebuild -workspace SimpleMQTTClient.xcodeproj -scheme SimpleMQTTClient
+  -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+xcode_project: SimpleMQTTClient.xcodeproj
+env:
+  global:
+  - FRAMEWORK_NAME=SimpleMQTTClient
+before_install:
+- brew update
+- brew outdated carthage || brew upgrade carthage
+before_script: 
+before_deploy:
+- carthage build --no-skip-current
+- carthage archive SimpleMQTTClient
+deploy:
+  provider: releases
+  api_key:
+    secure: PYRW5143ekHL6cv9tQBeCAiDHeqW6vjfkLjNxMZTrjgF0AmiRpOINwh6k/mfa+IK+NGQjIIMU3WcUJi3zcWbDUKvDqlzpTrdrJCBNt2vpKATIfNFN1U3L0YFo3y2d3RYiIGhKs8XTiw9twnbzBvVLWZv1Bshbw09wAvyI6M0Fi3M0oM+WQZpGi1sqzezjxqU8+phU6ULuPoH1n7mXPW8/HsV+6foLGko/erb909Bh/HVdR5x24JbWskwAGQVeyPeU+Tpq+JWQN/xgDz+MQktAUh3lZrZLpzb5kvrRxrVFUUfRqdFgBDjZCopGwyM3SmqvKT4Pfl9WAzSnh20QWfBK2FgCT9dCZPpNulHWkk/eFvL4+AkXL3teRRsiwLg0tE9q6KykuT6tYDo5imyMQjc7325ME+0cJW8MlZ3X9+70hpAj9wUukRIrLzzSM5Av7M8EemMF0ImX24RyfnWUYxEu1GfGVkKmSyND5pME3hm2QDQwVPmDUeXKAK2t5DBywr7DGVyMO8Z6Rb2ZhgomOOFuKxds3R75YD0pV8bwavoLisla5e3GOyFYVHsP397+8CQhpQ9CHRmxusTTCDyf98HYx22CmNOvyZy4/3aPEMIx8JSWJXmZl7K6ft3tFCcoEaBEqG2gLW21IyGkFg6QrMom+j7W6uJd5NpThQcOJKEDnM=
+  file: SimpleMQTTClient.framework.zip
+  on:
+    repo: aperritano/SimpleMQTTClient
+    branch: master
