@@ -2,10 +2,7 @@
 //  SimpleMQTTClientTests.swift
 //  SimpleMQTTClientTests
 //
-//  Created by Gianluca Venturini on 11/01/15.
-//  Copyright (c) 2015 Gianluca Venturini. All rights reserved.
-//
-
+//  Created by Gianluca Venturini & Anthony Perritano
 import UIKit
 import XCTest
 

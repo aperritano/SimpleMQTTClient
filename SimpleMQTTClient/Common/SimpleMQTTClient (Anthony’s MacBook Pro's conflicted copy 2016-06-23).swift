@@ -2,7 +2,9 @@
 //  SimpleMQTTClient.swift
 //  Test
 //
-//  Created by Gianluca Venturini & Anthony Perritano 
+//  Created by Gianluca Venturini on 10/01/15.
+//  Copyright (c) 2015 Gianluca Venturini. All rights reserved.
+//
 
 import Foundation
 
@@ -63,12 +65,9 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
             let chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
             let length = 22;    // Imposed by MQTT protocol
             var clientId = String();
-            
-            for _ in (0...length).reverse() {
+            for (var i = length; i > 0; i -= 1) {
                 clientId += chars[Int(arc4random_uniform(UInt32(length)))];
             }
-            
-
             
             session = MQTTSession(
                 clientId: clientId,
@@ -308,7 +307,7 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
     // MARK:  MQTTSessionDelegate protocol
     
     public func newMessage(session: MQTTSession!, data: NSData!, onTopic topic: String!, qos: MQTTQosLevel, retained: Bool, mid: UInt32) {
-        print("New message received \(NSString(data: data, encoding: NSUTF8StringEncoding))")
+        print("New message received \(NSString(data: data, encoding: NSUTF8StringEncoding))", terminator: "")
         self.delegate?.messageReceived?(
             topic,
             message: NSString(data: data, encoding: NSUTF8StringEncoding)! as String
@@ -322,7 +321,7 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
                 self.previouslySubscribedChannels = nil     // Delete the channels in the previous session
                 self.delegate?.connected?()
             case .ConnectionClosed:
-                print("SimpleMQTTClient: Connection closed, retry to re-connect in 1 second")
+                print("SimpleMQTTClient: Connection closed, retry to re-connect in 1 second", terminator: "")
                 NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(SimpleMQTTClient.reconnect(_:)), userInfo: nil, repeats: false)
                 //sessionConnected = false
                 //self.delegate?.disconnected?()
