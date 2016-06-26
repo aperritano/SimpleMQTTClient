@@ -5,7 +5,7 @@ notifications:
   slack: nutella-dev:7o4cfjd4K0Y2ulxGpHdE1jG5
 script: xcodebuild -workspace SimpleMQTTClient.xcodeproj -scheme SimpleMQTTClient
   -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-xcode_workspace: SimpleMQTTClient.xcodeproj
+xcode_project: SimpleMQTTClient.xcodeproj
 env:
   global:
   - FRAMEWORK_NAME=SimpleMQTTClient
