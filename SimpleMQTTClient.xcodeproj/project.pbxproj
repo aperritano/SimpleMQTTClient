@@ -39,25 +39,15 @@
 		700609881CC9A6C0001F60C2 /* SimpleMQTTClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700609701CC9A6C0001F60C2 /* SimpleMQTTClientDelegate.swift */; };
 		7006098A1CC9A6C0001F60C2 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700609711CC9A6C0001F60C2 /* String.swift */; };
 		7006098C1CC9A809001F60C2 /* SimpleMQTTClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 991DBE1A1A6353D300C084C5 /* SimpleMQTTClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7011CBE21D1A4EAA00BD11A4 /* SimpleMQTTClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 991DBE151A6353D300C084C5 /* SimpleMQTTClient.framework */; };
 		7016967B1CC9C89500BBA766 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7016967A1CC9C89500BBA766 /* AppDelegate.swift */; };
 		7016967D1CC9C89500BBA766 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7016967C1CC9C89500BBA766 /* ViewController.swift */; };
 		701696801CC9C89500BBA766 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7016967E1CC9C89500BBA766 /* Main.storyboard */; };
 		701696821CC9C89500BBA766 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 701696811CC9C89500BBA766 /* Assets.xcassets */; };
 		701696851CC9C89500BBA766 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 701696831CC9C89500BBA766 /* LaunchScreen.storyboard */; };
+		7082EBB81D375DD100D23D68 /* SimpleMQTTClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 991DBE151A6353D300C084C5 /* SimpleMQTTClient.framework */; };
 		99561AC61A6D781200A47734 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99561AC51A6D781200A47734 /* Foundation.framework */; };
 		99F8AA3D1A6D76B0003ECE44 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F8AA3C1A6D76B0003ECE44 /* UIKit.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		7016968C1CC9C99E00BBA766 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 991DBE0C1A6353D300C084C5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 991DBE141A6353D300C084C5;
-			remoteInfo = SimpleMQTTClient;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		700609611CC9A6C0001F60C2 /* MQTTClient-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MQTTClient-Prefix.pch"; path = "SimpleMQTTClient/Common/MQTTClient-Prefix.pch"; sourceTree = "<group>"; };
@@ -99,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7011CBE21D1A4EAA00BD11A4 /* SimpleMQTTClient.framework in Frameworks */,
+				7082EBB81D375DD100D23D68 /* SimpleMQTTClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +224,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7016968D1CC9C99E00BBA766 /* PBXTargetDependency */,
 			);
 			name = TestClient;
 			productName = TestClient;
@@ -266,7 +255,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Gianluca Venturini";
 				TargetAttributes = {
 					701696771CC9C89500BBA766 = {
@@ -275,6 +264,7 @@
 					};
 					7033829A1D1A50A800A445CC = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					991DBE141A6353D300C084C5 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -366,14 +356,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		7016968D1CC9C99E00BBA766 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 991DBE141A6353D300C084C5 /* SimpleMQTTClient */;
-			targetProxy = 7016968C1CC9C99E00BBA766 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		7016967E1CC9C89500BBA766 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -428,6 +410,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ltg.evl.uic.edu.TestClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -435,6 +418,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -442,6 +426,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -469,6 +454,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -516,6 +502,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -574,6 +561,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -596,6 +584,7 @@
 				7033829D1D1A50A800A445CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		991DBE0F1A6353D300C084C5 /* Build configuration list for PBXProject "SimpleMQTTClient" */ = {
 			isa = XCConfigurationList;

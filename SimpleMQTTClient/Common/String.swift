@@ -11,7 +11,7 @@ extension String {
     }
     
     // Chack if the passed string contains the actual string (starting from the beginning)
-    func isSubinitialStringOf(string: String) -> Bool {
+    func isSubinitialStringOf(_ string: String) -> Bool {
         var s1 = Array(self.characters)
         var s2 = Array(string.characters)
         

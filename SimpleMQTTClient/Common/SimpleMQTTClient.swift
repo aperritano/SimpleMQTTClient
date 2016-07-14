@@ -51,7 +51,7 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
                 will: false,
                 willTopic: nil,
                 willMsg: nil,
-                willQoS: MQTTQosLevel.QoSLevelAtMostOnce,
+                willQoS: MQTTQosLevel.qoSLevelAtMostOnce,
                 willRetainFlag: false,
                 protocolLevel: 4,
                 runLoop: nil,
@@ -64,7 +64,7 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
             let length = 22;    // Imposed by MQTT protocol
             var clientId = String();
             
-            for _ in (0...length).reverse() {
+            for _ in (0...length).reversed() {
                 clientId += chars[Int(arc4random_uniform(UInt32(length)))];
             }
             
@@ -79,7 +79,7 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
                 will: false,
                 willTopic: nil,
                 willMsg: nil,
-                willQoS: MQTTQosLevel.QoSLevelAtMostOnce,
+                willQoS: MQTTQosLevel.qoSLevelAtMostOnce,
                 willRetainFlag: false,
                 protocolLevel: 4,
                 runLoop: nil,
@@ -113,20 +113,20 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
     
         - parameter channel: The name of the channel.
     */
-    public func subscribe(channel: String) {
+    public func subscribe(_ channel: String) {
         while !sessionConnected && !sessionError {
-            NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 1))
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 1))
         }
         
         _ = 0
         
         if(synchronous) {
-            if session.subscribeAndWaitToTopic(channel, atLevel: MQTTQosLevel.QoSLevelAtMostOnce) {
+            if session.subscribeAndWait(toTopic: channel, at: MQTTQosLevel.qoSLevelAtMostOnce) {
                 subscribedChannels[channel] = true
             }
         }
         else {
-            let messageId = Int(session.subscribeToTopic(channel, atLevel: MQTTQosLevel.QoSLevelAtMostOnce))
+            let messageId = Int(session.subscribe(toTopic: channel, at: MQTTQosLevel.qoSLevelAtMostOnce))
             subscribedChannelMessageIds[messageId] = channel
         }
         
@@ -137,7 +137,7 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
     
         - parameter channel: The name of the channel.
     */
-    public func unsubscribe(channel: String) {
+    public func unsubscribe(_ channel: String) {
         if(synchronous) {
             if let entry = subscribedChannels[channel] {
                 if entry.boolValue {
@@ -174,9 +174,9 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
         - parameter channel: Channel name.
         - returns: true if is is subscribed to the channel.
     */
-    public func isSubscribed(channel: String) -> Bool {
+    public func isSubscribed(_ channel: String) -> Bool {
         for (c, subscribed) in subscribedChannels {
-            if subscribed && c.substringToIndex(c.endIndex.predecessor()).isSubinitialStringOf(channel) {
+            if subscribed && c.substring(to: c.characters.index(before: c.endIndex)).isSubinitialStringOf(channel) {
                 return true
             }
         }
@@ -190,9 +190,9 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
         - parameter channel: Channel name.
         - returns: the String of the wildcard
     */
-    public func wildcardSubscribed(channel: String) -> String? {
+    public func wildcardSubscribed(_ channel: String) -> String? {
         for (c, subscribed) in subscribedChannels {
-            if subscribed && c.substringToIndex(c.endIndex.predecessor()).isSubinitialStringOf(channel) {
+            if subscribed && c.substring(to: c.characters.index(before: c.endIndex)).isSubinitialStringOf(channel) {
                 return c
             }
         }
@@ -206,22 +206,22 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
         - parameter channel: The name of the channel.
         - parameter message: The message.
     */
-    public func publish(channel: String, message: String) {
+    public func publish(_ channel: String, message: String) {
         while !sessionConnected && !sessionError {
-            NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 1))
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 1))
         }
         
         if(synchronous) {
-            session.publishAndWaitData(message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false),
+            session.publishAndWait(message.data(using: String.Encoding.utf8, allowLossyConversion: false),
                 onTopic: channel,
                 retain: false,
-                qos: MQTTQosLevel.QoSLevelAtMostOnce)
+                qos: MQTTQosLevel.qoSLevelAtMostOnce)
         }
         else{
-            session.publishData(message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false),
+            session.publishData(message.data(using: String.Encoding.utf8, allowLossyConversion: false),
                 onTopic: channel,
                 retain: false,
-                qos: MQTTQosLevel.QoSLevelAtMostOnce)
+                qos: MQTTQosLevel.qoSLevelAtMostOnce)
         }
     }
     
@@ -240,18 +240,18 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
     
         - parameter host: The hostname of the server.
     */
-    public func connect(host: String) {
+    @nonobjc public func connect(_ host: String) {
         self.host = host
         
         if( sessionConnected == false) {
             subscribedChannels = [:]
             if(synchronous) {
-                session.connectAndWaitToHost(host,
+                session.connectAndWait(toHost: host,
                     port: 1883,
                     usingSSL: false)
             }
             else {
-                session.connectToHost(host,
+                session.connect(toHost: host,
                     port: 1883,
                     usingSSL: false)
             }
@@ -278,7 +278,7 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
             self.subscribedChannels = [:]
             
             if(synchronous) {
-                session.connectAndWaitToHost(host,
+                session.connectAndWait(toHost: host,
                     port: 1883,
                     usingSSL: false)
                 
@@ -291,7 +291,7 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
                 }
             }
             else {
-                session.connectToHost(host,
+                session.connect(toHost: host,
                     port: 1883,
                     usingSSL: false)
                 
@@ -301,29 +301,29 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
     }
     
     // Timer callback 1.0 seconds after the disconnection
-    public func reconnect(timer: NSTimer) {
+    public func reconnect(_ timer: Timer) {
         self.reconnect()
     }
     
     // MARK:  MQTTSessionDelegate protocol
     
-    public func newMessage(session: MQTTSession!, data: NSData!, onTopic topic: String!, qos: MQTTQosLevel, retained: Bool, mid: UInt32) {
-        print("New message received \(NSString(data: data, encoding: NSUTF8StringEncoding))", terminator: "")
+    public func newMessage(_ session: MQTTSession!, data: Data!, onTopic topic: String!, qos: MQTTQosLevel, retained: Bool, mid: UInt32) {
+        print("New message received \(NSString(data: data, encoding: String.Encoding.utf8.rawValue))", terminator: "")
         self.delegate?.messageReceived?(
             topic,
-            message: NSString(data: data, encoding: NSUTF8StringEncoding)! as String
+            message: String(data: data, encoding: String.Encoding.utf8)! as String
         )
     }
     
-    public func handleEvent(session: MQTTSession!, event eventCode: MQTTSessionEvent, error: NSError!) {
+    public func handleEvent(_ session: MQTTSession!, event eventCode: MQTTSessionEvent, error: NSError!) {
         switch eventCode {
-            case .Connected:
+            case .connected:
                 sessionConnected = true
                 self.previouslySubscribedChannels = nil     // Delete the channels in the previous session
                 self.delegate?.connected?()
-            case .ConnectionClosed:
+            case .connectionClosed:
                 print("SimpleMQTTClient: Connection closed, retry to re-connect in 1 second", terminator: "")
-                NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(SimpleMQTTClient.reconnect(_:)), userInfo: nil, repeats: false)
+                Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(SimpleMQTTClient.reconnect(_:)), userInfo: nil, repeats: false)
                 //sessionConnected = false
                 //self.delegate?.disconnected?()
             default:
@@ -331,13 +331,13 @@ public class SimpleMQTTClient: NSObject, MQTTSessionDelegate {
         }
     }
     
-    public func subAckReceived(session: MQTTSession, msgID: UInt16, grantedQoss: [AnyObject]) {
+    public func subAckReceived(_ session: MQTTSession, msgID: UInt16, grantedQoss: [AnyObject]) {
         if let channel = subscribedChannelMessageIds[Int(msgID)] {
             subscribedChannels[channel] = true
         }
     }
     
-    public func unsubAckReceived(session: MQTTSession, msgID: UInt16, grantedQoss: [AnyObject]) {
+    public func unsubAckReceived(_ session: MQTTSession, msgID: UInt16, grantedQoss: [AnyObject]) {
         if let channel = unsubscribedChannelMessageIds[Int(msgID)] {
             subscribedChannels[channel] = false
         }

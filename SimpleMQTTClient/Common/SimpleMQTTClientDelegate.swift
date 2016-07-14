@@ -17,15 +17,15 @@ import Foundation
         - parameter channel: The name of the channel
         - parameter message: The message
     */
-    optional func messageReceived(channel: String, message: String)
+    @objc optional func messageReceived(_ channel: String, message: String)
     
     /**
         Called when the client will be disconnected.
     */
-    optional func disconnected()
+    @objc optional func disconnected()
     
     /**
         Called when the client will be connected.
     */
-    optional func connected()
+    @objc optional func connected()
 }
