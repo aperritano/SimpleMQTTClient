@@ -261,6 +261,7 @@
 					701696771CC9C89500BBA766 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = CN8G286W67;
+						LastSwiftMigration = 0800;
 					};
 					7033829A1D1A50A800A445CC = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -269,6 +270,7 @@
 					991DBE141A6353D300C084C5 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = CN8G286W67;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -391,6 +393,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ltg.evl.uic.edu.TestClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -411,6 +414,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -539,6 +543,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -562,6 +567,7 @@
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

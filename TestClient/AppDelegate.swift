@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SimpleMQTTClientDelegate 
 
     var mqtt: SimpleMQTTClient?
     
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         mqtt = SimpleMQTTClient(host: "iot.eclipse.org", synchronous: true)
         mqtt?.subscribe("test989")
